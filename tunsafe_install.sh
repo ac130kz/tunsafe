@@ -31,7 +31,7 @@ tunsafe_install(){
     apt update -y
     apt install -y git curl make clang-8
     git clone https://github.com/ac130kz/TunSafe-1.git
-    cd TunSafe
+    cd TunSafe-1
     make && make install
     
     echo net.ipv4.ip_forward = 1 >> /etc/sysctl.conf
