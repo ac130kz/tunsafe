@@ -30,8 +30,8 @@ tunsafe_install(){
     version=$(cat /etc/os-release | awk -F '[".]' '$1=="VERSION="{print $2}')
     apt update -y
     apt install -y git curl make clang-8
-    git clone https://github.com/ac130kz/TunSafe-1.git
-    cd TunSafe-1
+    git clone https://github.com/ac130kz/TunSafeClang8.git
+    cd TunSafeClang8
     make && make install
     
     echo net.ipv4.ip_forward = 1 >> /etc/sysctl.conf
