@@ -29,7 +29,7 @@ rand(){
 tunsafe_install(){
     version=$(cat /etc/os-release | awk -F '[".]' '$1=="VERSION="{print $2}')
     apt update -y
-    apt install -y git curl make clang-8
+    apt install -y git curl make clang-6.0
     git clone https://github.com/TunSafe/TunSafe.git
     cd TunSafe
     make && make install
