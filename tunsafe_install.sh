@@ -86,7 +86,7 @@ MTU = 1380
 [Peer]
 PublicKey = $s2
 Endpoint = $serverip:$port
-AllowedIPs = 0.0.0.0/0, ::0/0
+AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 EOF
         
@@ -121,7 +121,7 @@ MTU = 1380
 [Peer]
 PublicKey = $s2
 Endpoint = tcp://$serverip:$port
-AllowedIPs = 0.0.0.0/0, ::0/0
+AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 EOF
         
@@ -154,7 +154,7 @@ MTU = 1420
 [Peer]
 PublicKey = $s2
 Endpoint = tcp://$serverip:$port
-AllowedIPs = 0.0.0.0/0, ::0/0
+AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 EOF
         
@@ -192,7 +192,7 @@ MTU = 1380
 [Peer]
 PublicKey = $s2
 Endpoint = tcp://$serverip:443
-AllowedIPs = 0.0.0.0/0, ::0/0
+AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 EOF
         
