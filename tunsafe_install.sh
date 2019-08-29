@@ -54,6 +54,7 @@ tunsafe_install(){
     green "2) TCP + obfuscation"
     green "3) custom TCP + 1.1.1.1 + wireguard's max mtu = 1420"
     green "4) TCP + obfuscation + HTTPS masquerade mode"
+	green "5) custom TCP + 1.1.1.1 + wireguard's max mtu = 1420 + obfuscation"
     read choose
     if [ $choose == 1 ]
     then
@@ -192,6 +193,43 @@ MTU = 1380
 [Peer]
 PublicKey = $s2
 Endpoint = tcp://$serverip:443
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 25
+EOF
+        
+    fi
+	if [ $choose == 5 ]
+    then
+cat > /etc/tunsafe/TunSafe.conf <<-EOF
+[Interface]
+PrivateKey = $s1
+Address = 10.0.0.1/24
+ObfuscateKey = $obfsstr
+ListenPortTCP = 443
+ObfuscateTCP=tls-chrome
+PostUp   = iptables -A FORWARD -i tun0 -j ACCEPT; iptables -A FORWARD -o tun0 -j ACCEPT; iptables -t nat -A POSTROUTING -o $eth -j MASQUERADE
+PostDown = iptables -D FORWARD -i tun0 -j ACCEPT; iptables -D FORWARD -o tun0 -j ACCEPT; iptables -t nat -D POSTROUTING -o $eth -j MASQUERADE
+DNS = 1.1.1.1
+MTU = 1420
+
+[Peer]
+PublicKey = $c2
+AllowedIPs = 10.0.0.2/32
+EOF
+        
+        
+cat > /etc/tunsafe/client.conf <<-EOF
+[Interface]
+PrivateKey = $c1
+Address = 10.0.0.2/24
+ObfuscateKey = $obfsstr
+ObfuscateTCP=tls-chrome
+DNS = 1.1.1.1
+MTU = 1420
+
+[Peer]
+PublicKey = $s2
+Endpoint = tcp://$serverip:$port
 AllowedIPs = 0.0.0.0/0
 PersistentKeepalive = 25
 EOF
