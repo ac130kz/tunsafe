@@ -54,7 +54,7 @@ tunsafe_install(){
     green "2) TCP + obfuscation"
     green "3) custom TCP + 1.1.1.1 + wireguard's max mtu = 1420"
     green "4) TCP + obfuscation + HTTPS masquerade mode"
-	green "5) custom TCP + 1.1.1.1 + wireguard's max mtu = 1420 + obfuscation"
+    green "5) custom TCP + 1.1.1.1 + wireguard's max mtu = 1420 + obfuscation"
     read choose
     if [ $choose == 1 ]
     then
@@ -198,7 +198,7 @@ PersistentKeepalive = 25
 EOF
         
     fi
-	if [ $choose == 5 ]
+    if [ $choose == 5 ]
     then
 cat > /etc/tunsafe/TunSafe.conf <<-EOF
 [Interface]
